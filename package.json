@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@hookform/resolvers": "^3.9.1",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
@@ -10,11 +11,20 @@
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "@types/react-input-mask": "^3.0.6",
+    "@types/react-router-dom": "^5.3.3",
+    "@yandex/ymaps3-types": "^1.0.15395607",
+    "axios": "^1.7.9",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-hook-form": "^7.53.2",
+    "react-input-mask": "^2.0.4",
+    "react-router-dom": "^7.0.1",
     "react-scripts": "5.0.1",
+    "tailwindcss": "^3.4.15",
     "typescript": "^4.4.2",
-    "web-vitals": "^2.1.0"
+    "web-vitals": "^2.1.0",
+    "yup": "^1.5.0"
   },
   "scripts": {
     "start": "react-scripts start",
