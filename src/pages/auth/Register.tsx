@@ -44,19 +44,19 @@ export default function Register() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-[70%] h-[83%] bg-[#F2F2ED] flex flex-col gap-5 "
+      className="w-[70%] sm:w-full sm:h-full h-[83%] bg-[#F2F2ED] flex flex-col gap-5 "
     >
       <header className="flex flex-col items-center mt-10">
         <div className="border-b-2 border-[#9B9696] text-[48px] px-5 font-serif">
           Регистрация
         </div>
-        <div className="text-[13px] w-[35%] mt-2 text-center">
+        <div className="text-[13px] w-[35%] sm:w-full sm:text-[18px] mt-2 text-center">
           Войдите в свой профиль, чтобы быстро и легко бронировать билеты
         </div>
       </header>
 
-      <div className="flex justify-center font-serif">
-        <div className="flex items-center flex-col gap-5 w-[50%]">
+      <div className="flex justify-center font-serif sm:flex-col">
+        <div className="flex items-center flex-col gap-5 w-[50%] sm:w-full">
           <input
             {...register("fullName", { required: true })}
             placeholder="Имя и фамилия"
@@ -83,7 +83,7 @@ export default function Register() {
           </div>
         </div>
 
-        <div className="flex items-center flex-col gap-5 w-[50%]">
+        <div className="flex items-center flex-col gap-5 w-[50%] sm:w-full">
           <input
             {...register("email")}
             placeholder="Электронная почта"
