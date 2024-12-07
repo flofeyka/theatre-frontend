@@ -2,15 +2,17 @@ import { Session } from "../../../types/types";
 import { selectedRepertoire } from "../Tickets";
 
 type IProps = {
-  setSelectedSession: (selectedTicket: Session) => void;
+  setSelectedSession: (selectedTicket: Session | null) => void;
   selectedRepertoire: selectedRepertoire;
   sessions: Session[];
+  setOpened: (opened: boolean) => void;
 };
 
 export default function FirstStep({
   selectedRepertoire,
   setSelectedSession,
   sessions,
+  setOpened
 }: IProps) {
   return (
     <div className="items-center flex flex-col justify-center">
@@ -30,14 +32,14 @@ export default function FirstStep({
             </span>
           </div>
           <div>
-            1
+            <img onClick={() => setOpened(false)} src="/icons/close.svg" alt="close"/>
           </div>
         </div>
 
         <div className="text-[40px]">Выбор сеанса</div>
 
         {sessions.map((session: Session) => (
-          <div className="bg-[#E9E9E5] min-h-[150px] w-full mt-5 flex items-center justify-between px-10">
+          <div className="bg-[#E9E9E5] min-h-[150px] w-full mt-5 flex sm:flex-col items-center justify-between px-10">
             <div className="flex items-center font-serif">
               <span className="text-[100px]">
                 {new Date(session.time).getUTCDate()}
@@ -62,7 +64,7 @@ export default function FirstStep({
               })}
             </div>
 
-            <div className="text-center font-serif">
+            <div className="text-center font-serif sm:my-5">
               <div className="text-[20px]">Владимирский театр драмы</div>
               <div className="text-[25px]">
                 г. Владимир, ул. Дворянская, д.4

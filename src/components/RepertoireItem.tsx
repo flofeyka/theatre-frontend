@@ -14,7 +14,7 @@ export default function RepertoireItem({
   image: string;
 }) {
   return (
-    <div className="w-[33.333333%] h-[42vw] border-r-2 border-black border-b-2 flex flex-col justify-center gap-2 items-center">
+    <div className="w-[33.333333%] sm:w-full sm:h-full h-[42vw] border-r-2 border-black border-b-2 flex flex-col justify-center gap-2 items-center">
       <div className="text-black/2 mb-10">
         {date ? (
           <div className="text-center font-serif">

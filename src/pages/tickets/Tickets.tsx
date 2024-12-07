@@ -73,12 +73,12 @@ export default function Tickets() {
 
   return (
     <div>
-      <header className="bg-[url('/public/images/tickets/background.png')] h-[50vh] text-white text-[128px] flex justify-center items-center">
+      <header className="bg-[url('/public/images/tickets/background.png')] h-[50vh] sm:text-[60px] text-white text-[128px] flex justify-center items-center">
         БИЛЕТЫ
       </header>
-      <div className="grid grid-cols-7">
+      <div className="grid grid-cols-7 sm:flex sm:flex-col">
         {daysOfWeek.map((day, index) => (
-          <div key={index} className="font-semibold text-center">
+          <div key={index} className="font-semibold text-center sm:hidden">
             {day}
           </div>
         ))}
@@ -93,6 +93,7 @@ export default function Tickets() {
         {opened && (
           <div className="fixed top-0 overflow-auto bg-black/50 w-screen h-screen flex justify-center items-center pt-10">
             <BuyTicket
+              setOpened={setOpened}
               selectedRepertoire={selectedRepertoire!}
               setSelectedRepertoire={(selectedRepertoire: selectedRepertoire) =>
                 setSelectedRepertoire(selectedRepertoire)

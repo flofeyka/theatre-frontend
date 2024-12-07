@@ -18,8 +18,8 @@ export default function Repertoires() {
 
   return (
     <div>
-      <div className="bg-[url('/public/images/repertoire/background.png')] text-white bg-yellow-500 h-[80vh] bg-cover ">
-        <div className="flex justify-center items-center text-[128px] h-[94%] pt-10">
+      <div className="bg-[url('/public/images/repertoire/background.png')] text-white bg-yellow-500 h-[80vh] bg-cover sm:min-h-[50vh] sm:bg-center">
+        <div className="flex justify-center items-center text-[128px] h-[94%] pt-10 sm:text-[50px]">
           РЕПЕРТУАР
         </div>
         <div className="flex justify-center gap-7 text-[24px]">
@@ -27,7 +27,7 @@ export default function Repertoires() {
           <span className="cursor-pointer">АРХИВ</span>
         </div>
       </div>
-      <div className="flex flex-wrap border-t-2 border-black">
+      <div className="flex flex-wrap border-t-2 border-black sm:flex-col">
         {repertoires.map((repertoire: Repertoire) => (
           <RepertoireItem
             image={repertoire.image}
