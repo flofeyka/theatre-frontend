@@ -11,7 +11,7 @@ export default function Header() {
 
   return (
     <header className="flex h-[7.5vh] border-b bg-[#F2F2ED]">
-      <div className="flex justify-end w-full px-5">
+      <div className="flex justify-end w-full px-5 lg:hidden">
         {!menu && (
           <button
             onClick={() => setMenu(!menu)}

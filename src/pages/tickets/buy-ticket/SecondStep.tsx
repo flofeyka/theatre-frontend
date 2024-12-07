@@ -120,7 +120,7 @@ export default function SecondStep({
     console.log(status);
     if (status === 200) {
       setSuccess(true);
-      setSelectedPlaces([]);
+      // setSelectedPlaces([]);
     }
 
     if (status === 401) {
@@ -145,12 +145,17 @@ export default function SecondStep({
                 Забронированные билеты ожидают оплаты на кассе
               </div>
               <div className="flex justify-center gap-10 font-serif">
-                <button className="bg-[#F0D92A] p-3 px-5">
+                <button className="bg-[#F0D92A] p-3 px-5" onClick={() => {
+                  setSuccess(null);
+                  sessionAPI.cancelBook(selectedSession.id, selectedPlaces);
+                  setSelectedPlaces([]);
+                  }}>
                   Отменить бронь
                 </button>
                 <button
                   className="bg-[#B8AF9E] p-3 px-5"
                   onClick={() => {
+                    setSelectedPlaces([]);
                     setSuccess(null);
                     navigate("/");
                   }}
