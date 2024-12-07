@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { sessionAPI } from "../../../api/sessionAPI";
 import { Session } from "../../../types/types";
 import { selectedRepertoire } from "../Tickets";
+import Ticket from "../../../components/Ticket";
 
 const hall = [];
 
@@ -786,23 +787,12 @@ export default function SecondStep({
           <div className="bg-[#E1E1DD]">
             <div className="flex gap-3 p-3 flex-wrap justify-stretch">
               {selectedPlaces.map((place) => (
-                <div className="bg-[#F2F2ED] flex ">
-                  <div className="border-r-2 border-black">
-                    <div className="p-3 font-serif">
-                      <span>
-                        <span>{place.row} </span> <span>ряд</span>,
-                      </span>
-                      <span>
-                        <span> {place.place} </span> <span>место</span>
-                      </span>
-                    </div>
-                    <div className="p-3 font-serif">Партер</div>
-                  </div>
-
-                  <div className="-rotate-90 flex items-center justify-center not-italic text-2xl">
-                    {selectedSession.price} ₽
-                  </div>
-                </div>
+                <Ticket
+                  row={place.row}
+                  place={place.place}
+                  price={selectedSession.price}
+                  type={place.type}
+                />
               ))}
             </div>
             <div>
