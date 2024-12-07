@@ -1,6 +1,5 @@
-import axios from "axios";
-import { baseAPI } from "./baseAPI";
 import { AuthResponse } from "../types/types";
+import { baseAPI } from "./baseAPI";
 
 export const authAPI = {
   async signIn({
@@ -9,16 +8,17 @@ export const authAPI = {
   }: {
     email: string;
     password: string;
-  }): Promise<AuthResponse | { isError: boolean; value: any }> {
+  }): Promise<AuthResponse | { isError: boolean; value: any, status: number }> {
     try {
-      const { data } = await baseAPI.post("/auth/sign-in", { email, password });
+      const { data, status } = await baseAPI.post("/auth/sign-in", { email, password });
       localStorage.setItem("accessToken", data.accessToken);
       localStorage.setItem("refreshToken", data.refreshToken);
-      return data;
-    } catch (e) {
+      return {data, status};
+    } catch (e: any) {
       return {
         isError: true,
         value: e,
+        status: e.response.status
       };
     }
   },
@@ -35,9 +35,9 @@ export const authAPI = {
     fullName: string;
     birth: Date;
     phoneNumber: string;
-  }): Promise<AuthResponse | { isError: boolean; value: any }> {
+  }): Promise<AuthResponse | { isError: boolean; value: any, status: number }> {
     try {
-      const { data } = await baseAPI.post("/auth/sign-up", {
+      const { data, status } = await baseAPI.post("/auth/sign-up", {
         email,
         password,
         fullName,
@@ -46,11 +46,12 @@ export const authAPI = {
       });
       localStorage.setItem("accessToken", data.accessToken);
       localStorage.setItem("refreshToken", data.refreshToken);
-      return data;
-    } catch (e) {
+      return {data, status};
+    } catch (e: any) {
       return {
         isError: true,
         value: e,
+        status: e.response.status
       };
     }
   },

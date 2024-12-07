@@ -4,12 +4,14 @@ export default function RepertoireItem({
   name,
   category,
   date,
+  image
 }: {
   age: number;
   id: number;
   name: string;
   category?: string;
   date?: Date;
+  image: string;
 }) {
   return (
     <div className="w-[33.333333%] h-[42vw] border-r-2 border-black border-b-2 flex flex-col justify-center gap-2 items-center">
@@ -37,7 +39,7 @@ export default function RepertoireItem({
       </div>
       <div>
         <img
-          src={`/images/repertoire/items/${id}.jpeg`}
+          src={image}
           alt={"repertoire"}
           className="border-2 border-black h-[250px] w-[200px] p-3 rounded-t-full"
         />

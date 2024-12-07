@@ -30,6 +30,7 @@ export default function Repertoires() {
       <div className="flex flex-wrap border-t-2 border-black">
         {repertoires.map((repertoire: Repertoire) => (
           <RepertoireItem
+            image={repertoire.image}
             id={repertoire.id}
             name={repertoire.title}
             age={repertoire.category}
