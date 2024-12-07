@@ -93,16 +93,16 @@ const members: Members = {
 
 export default function Group() {
     return <div>
-        <div className="border-b-2 border-black border-solid text-[20px] justify-between flex">
-            <span className=" w-[33vw] flex justify-center items-center">АДМИНИСТРАТИВНО ТВОРЧЕСКИЙ СОСТАВ</span>
-            <span className=" w-[33vw] flex justify-center items-center">РЕЖИССЁРСКИЙ СОСТАВ</span>
-            <span className=" w-[33vw] flex justify-center items-center">АКТЁРСКИЙ СОСТАВ</span>
+        <div className="border-b-2 border-black border-solid text-[20px] sm:text-[15px] justify-between flex sm:flex-col">
+            <span className=" w-[33vw] sm:w-full flex justify-center items-center sm:border-b-2 sm:border-black">АДМИНИСТРАТИВНО ТВОРЧЕСКИЙ СОСТАВ</span>
+            <span className=" w-[33vw] sm:w-full flex justify-center items-center sm:border-b-2 sm:border-black">РЕЖИССЁРСКИЙ СОСТАВ</span>
+            <span className=" w-[33vw] sm:w-full flex justify-center items-center ">АКТЁРСКИЙ СОСТАВ</span>
         </div>
         {Object.entries(members).map(val => <>
             <div>
                 <header className="text-[30px] text-center my-3">{val[1].title}</header>
             </div>
-            <div className="border-t-2 border-b-2 border-black flex">
+            <div className="border-t-2 border-b-2 border-black flex sm:flex-col">
                 {val[1].members.map((member: Member) => <Member fullName={member.fullName} id={member.id} post={member.post} key={member.id} />)}
             </div>
         </>

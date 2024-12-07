@@ -7,9 +7,11 @@ import SecondStep from "./SecondStep";
 
 export default function BuyTicket({
   selectedRepertoire,
+  setOpened
 }: {
   setSelectedRepertoire: (selectedRepertoire: selectedRepertoire) => void;
   selectedRepertoire: selectedRepertoire;
+  setOpened: (opened: boolean) => void 
 }) {
   const [sessions, setSessions] = React.useState<Session[]>([]);
   const [selectedSession, setSelectedSession] = React.useState<Session | null>(
@@ -26,7 +28,7 @@ export default function BuyTicket({
   }, [selectedRepertoire.id]);
 
   return (
-    <div className="bg-[#F2F2ED] w-[90%] py-14">
+    <div className="bg-[#F2F2ED] w-[90%] sm:w-full sm:mt-[60vh] py-14">
       {selectedSession ? (
         <SecondStep
           selectedRepertoire={selectedRepertoire}
@@ -40,6 +42,7 @@ export default function BuyTicket({
           setSelectedSession={(selectedTicket: Session | null) =>
             setSelectedSession(selectedTicket)
           }
+          setOpened={setOpened}
         />
       )}
     </div>

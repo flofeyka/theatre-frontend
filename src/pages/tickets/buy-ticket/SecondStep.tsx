@@ -136,7 +136,7 @@ export default function SecondStep({
       {success !== null && (
         <div className="w-screen h-screen bg-black/50 fixed top-0 left-0 z-[99999] flex justify-center items-center">
           {success ? (
-            <div className="bg-[#F2F2ED] w-[40%] flex flex-col gap-5 p-5 py-10 items-center">
+            <div className="bg-[#F2F2ED] w-[40%] sm:w-[90%] flex flex-col gap-5 p-5 py-10 items-center">
               <div className="text-center text-[36px]">
                 БИЛЕТЫ УСПЕШНО ЗАБРОНИРОВАНЫ
               </div>
@@ -159,7 +159,7 @@ export default function SecondStep({
               </div>
             </div>
           ) : (
-            <div className="bg-[#F2F2ED] w-[40%] flex flex-col gap-5 p-5 py-12 items-center">
+            <div className="bg-[#F2F2ED] w-[40%] sm:w-[90%] flex flex-col gap-5 p-5 py-12 items-center">
               <div className="text-[36px]">ПРОИЗОШЛА ОШИБКА</div>
               <div className="flex font-serif gap-10">
                 <button
@@ -222,9 +222,9 @@ export default function SecondStep({
         Назад
       </div>
 
-      <div className="flex relative items-stretch">
-        <div className="w-[50vw] bg-[#D9D9D9] relative flex flex-col items-center py-10 h-full">
-          <div className="bg-[#F2F2ED] flex items-center justify-end gap-3 font-serif text-xl w-[80%]">
+      <div className="flex relative items-stretch sm:flex-col">
+        <div className="w-[50vw] sm:w-full bg-[#D9D9D9] relative flex flex-col items-center py-10 h-full">
+          <div className="bg-[#F2F2ED] sm:w-[90%] flex items-center justify-end gap-3 font-serif text-xl w-[80%]">
             <span className="flex items-center">
               <svg
                 width="12"
@@ -254,19 +254,19 @@ export default function SecondStep({
             </span>
           </div>
 
-          <div className="bg-[#F2F2ED] text-[25px] w-[50%] h-[100px] flex justify-center items-center mt-10 ">
+          <div className="bg-[#F2F2ED] text-[25px] w-[50%] sm:w-full h-[100px] flex justify-center items-center mt-10 ">
             СЦЕНА
           </div>
 
           <div className="flex flex-col items-center w-full gap-5 mt-5">
             <div className="min-h-[270px] min-w-[75%] flex flex-col items-center bg-[#F2F2ED] py-5">
               <div className="text-center text-3xl mb-5">ПАРТЕР</div>
-              <div className="flex flex-col gap-3 iteFms-center px-10 gap-5">
+              <div className="flex flex-col gap-3 iteFms-center px-10 sm:p-0 gap-5">
                 <div className="flex flex-col items-center">
                   {Object.entries(rowsWithPlacements)
                     .slice(0, 9)
                     .map((row, rowIndex) => (
-                      <div className="flex gap-10">
+                      <div className="flex gap-10 sm:gap-5">
                         <div className="flex">
                           {row[1]
                             .slice(0, row[1].length / 2)
@@ -435,7 +435,7 @@ export default function SecondStep({
                   {Object.entries(rowsWithPlacements)
                     .slice(9, Object.entries(rowsWithPlacements).length)
                     .map((row, rowIndex) => (
-                      <div className="flex gap-10">
+                      <div className="flex gap-10 sm:gap-5">
                         <div className="flex">
                           {row[1]
                             .slice(0, row[1].length / 2)
@@ -779,7 +779,7 @@ export default function SecondStep({
             </div>
           </div>
         </div>
-        <div className="w-[50vw] ">
+        <div className="w-[50vw] sm:w-full">
           <div className="h-[100px] text-[28px] flex justify-center items-center border-b-2 border-black">
             Корзина
           </div>
@@ -832,7 +832,7 @@ export default function SecondStep({
           <div className="min-h-[100px] flex items-center px-5 justify-end">
             {selectedPlaces.length > 0 && (
               <button
-                className="font-serif h-[70px] w-[35%] bg-yellow-400 text-2xl"
+                className="font-serif h-[70px] sm:w-full w-[35%] bg-yellow-400 text-2xl"
                 onClick={() => onBook()}
               >
                 Забронировать

@@ -1,6 +1,6 @@
 export default function Theatre() {
-    return <div className="flex border-b-2 border-black">
-        <div className="w-[25vw] border-r-2 border-black">
+    return <div className="flex border-b-2 border-black sm:flex-col">
+        <div className="w-[25vw] sm:w-full border-r-2 border-black">
             <div className="bg-[url('/public/images/about/old-1.png')] flex flex-col text-[25px] font-[serif] py-4 bg-black justify-between items-center h-[40vh]">
                 <div>СОЗДАНИЕ ТЕАТРА</div>
                 <div>1848-1905</div>
@@ -14,7 +14,7 @@ export default function Theatre() {
                 <div>1934-1971</div>
             </div>
         </div>
-        <div className="w-[50vw]">
+        <div className="w-[50vw] sm:w-full">
             <div className="border-b-2 border-black">
                 <header className="text-[48px] border-b-2 border-black">
                     <div className="m-3">                    СОЗДАНИЕ ТЕАТРА
@@ -54,12 +54,12 @@ export default function Theatre() {
                 </main>
             </div>
         </div>
-        <div className="w-[25vw] border-l-2 border-black">
-            <div className="text-[48px] flex justify-center h-[11.7vh] items-center border-b-2 border-black">ВИД ТЕАТРА</div>
+        <div className="w-[25vw] sm:w-full border-l-2 sm:border-l-0 border-black sm:border-t-2">
+            <div className="text-[48px] flex justify-center h-[11.7vh] items-center border-b-2  border-black">ВИД ТЕАТРА</div>
             <div className="flex flex-col gap-5">
                 <img src="/images/about/old-2.png" className="border-b-2 border-black" alt="old theatre" />
                 <img src="/images/about/old-3.png" className="border-b-2 border-t-2 border-black" alt="old theatre" />
-                <img src="/images/about/old-4.png" className="border-b-2 border-t-2 border-black" alt="old theatre" />
+                <img src="/images/about/old-4.png" className="border-b-2 border-t-2 sm:border-b-0 border-black" alt="old theatre" />
             </div>
         </div>
     </div>
