@@ -5,7 +5,6 @@ import About from "./pages/about/About";
 import AuthLayout from "./pages/auth/AuthLayout";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
-import BuyTicket from "./pages/buy-ticket/BuyTicket";
 import Contacts from "./pages/contacts/Contacts";
 import Landing from "./pages/landing/Landing";
 import Repertoire from "./pages/repertoire/Repertoire";
@@ -62,14 +61,6 @@ function App() {
           element={
             <Layout>
               <Repertoire />
-            </Layout>
-          }
-        />
-        <Route
-          path="/buy-ticket"
-          element={
-            <Layout>
-              <BuyTicket />
             </Layout>
           }
         />

@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import InputMask from "react-input-mask";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -16,6 +16,8 @@ type InputType = {
 };
 
 export default function Register() {
+  const navigate = useNavigate();
+
   const schema = yup.object().shape({
     email: yup.string().email().required(),
     fullName: yup.string().required(),
@@ -28,14 +30,16 @@ export default function Register() {
       .oneOf([yup.ref("password")], "Пароли не совпадают")
       .required(),
   });
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<InputType>({
+  const { register, handleSubmit } = useForm<InputType>({
     resolver: yupResolver(schema),
   });
-  const onSubmit = (data: InputType) => authAPI.signUp(data);
+  const onSubmit = async (data: InputType) => {
+    const responseData = await authAPI.signUp(data);
+    if (responseData.status === 200) {
+      navigate("/");
+    }
+    
+  };
 
   return (
     <form

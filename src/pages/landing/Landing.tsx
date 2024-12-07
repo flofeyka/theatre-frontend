@@ -102,67 +102,71 @@ export default function Landing() {
       </header>
 
       <main>
-        <div className="w-full h-[50vh] bg-black flex px-14 text-white">
-          <div>
-            <span className="text-white font-semibold text-3xl mt-3">14+</span>
-            <span>
-              <img
-                src="/images/landing/451-farenheit.png"
-                className="h-[45vh]"
-                alt="451 farenheit"
-              />
-            </span>
-          </div>
-          {repertoires.length > 0 && (
-            <div className="py-5 ml-3 w-[60vw]">
-              <div className="flex justify-between w-full">
+        {repertoires.length > 0 && (
+          <div className="w-full h-[50vh] bg-black flex px-14 text-white">
+            <div>
+              <span className="text-white font-semibold text-3xl mt-3">
+                14+
+              </span>
+              <span>
                 <img
-                  src="/images/pushkin_card.png"
-                  alt="pushkin_card"
-                  className="w-[175px] h-[75px]"
+                  src={repertoires[0].image}
+                  className="h-[45vh]"
+                  alt="451 farenheit"
                 />
-
-                <div className="text-[35px] flex flex-col items-end justify-self-end">
-                  <div>
-                    {new Intl.DateTimeFormat("ru-RU", {
-                      month: "long",
-                      day: "numeric",
-                      timeZone: "UTC", // Используем UTC для точного отображения
-                    }).format(new Date(repertoires[0].sessions[0].time))}
-                  </div>
-                  <div>
-                    {new Intl.DateTimeFormat("ru-RU", {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                      timeZone: "UTC", // Используем UTC
-                    }).format(new Date(repertoires[0].sessions[0].time))}
-                  </div>
-                  <div>
-                    {new Intl.DateTimeFormat("ru-RU", {
-                      weekday: "short",
-                      timeZone: "UTC", // Используем UTC
-                    }).format(new Date(repertoires[0].sessions[0].time))}
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-col items-center">
-                <div className="">
-                  <div className="text-[48px] justify-center items-center flex">
-                    {repertoires[0].title}
-                  </div>
-                  <div className="flex justify-end">
-                    {repertoires[0].description}
-                  </div>
-                </div>
-              </div>
-              <div className="flex w-[85%] justify-end mt-10">
-                <button className="px-10 py-3 text-[25px] bg-[#F0D92A] text-black font-semibold rounded-lg ">
-                  Подробнее
-                </button>
-              </div>
+              </span>
             </div>
-          )}
-        </div>
+            {repertoires.length > 0 && (
+              <div className="py-5 ml-3 w-[60vw]">
+                <div className="flex justify-between w-full">
+                  <img
+                    src="/images/pushkin_card.png"
+                    alt="pushkin_card"
+                    className="w-[175px] h-[75px]"
+                  />
+
+                  <div className="text-[35px] flex flex-col items-end justify-self-end">
+                    <div>
+                      {new Intl.DateTimeFormat("ru-RU", {
+                        month: "long",
+                        day: "numeric",
+                        timeZone: "UTC", // Используем UTC для точного отображения
+                      }).format(new Date(repertoires[0].sessions[0].time))}
+                    </div>
+                    <div>
+                      {new Intl.DateTimeFormat("ru-RU", {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        timeZone: "UTC", // Используем UTC
+                      }).format(new Date(repertoires[0].sessions[0].time))}
+                    </div>
+                    <div>
+                      {new Intl.DateTimeFormat("ru-RU", {
+                        weekday: "short",
+                        timeZone: "UTC", // Используем UTC
+                      }).format(new Date(repertoires[0].sessions[0].time))}
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-col items-center">
+                  <div className="">
+                    <div className="text-[48px] justify-center items-center flex">
+                      {repertoires[0].title}
+                    </div>
+                    <div className="flex justify-end">
+                      {repertoires[0].description}
+                    </div>
+                  </div>
+                </div>
+                <div className="flex w-[85%] justify-end mt-10">
+                  <button className="px-10 py-3 text-[25px] bg-[#F0D92A] text-black font-semibold rounded-lg ">
+                    Подробнее
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
 
         <div className="flex items-stretch border-b-2 border-black">
           <div className="w-[22.5vw] py-5 bg-[#F0D92A] justify-between flex flex-col items-center relative border-black">
@@ -208,23 +212,26 @@ export default function Landing() {
           </div>
         </div>
 
-        <div>
-          <div className="text-[30px] py-5 text-center border-b-2 border-black">
-            БЛИЖАЙШИЕ СОБЫТИЯ
-          </div>
+        {repertoires.length > 0 && (
+          <div>
+            <div className="text-[30px] py-5 text-center border-b-2 border-black">
+              БЛИЖАЙШИЕ СОБЫТИЯ
+            </div>
 
-          <div className="flex w-full">
-            {repertoires.map((repertoire: Repertoire) => (
-              <RepertoireItem
-                id={repertoire.id}
-                key={repertoire.id}
-                name={repertoire.title}
-                date={new Date(repertoire.sessions[0].time)}
-                age={repertoire.category}
-              />
-            ))}
+            <div className="flex w-full">
+              {repertoires.map((repertoire: Repertoire) => (
+                <RepertoireItem
+                  image={repertoire.image}
+                  id={repertoire.id}
+                  key={repertoire.id}
+                  name={repertoire.title}
+                  date={new Date(repertoire.sessions[0].time)}
+                  age={repertoire.category}
+                />
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </main>
 
       <Footer />

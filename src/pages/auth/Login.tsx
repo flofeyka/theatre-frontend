@@ -1,11 +1,23 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthType } from "../../types/types";
 import { authAPI } from "../../api/authAPI";
+import React from "react";
 
 export default function Login() {
+  const navigate = useNavigate();
   const { register, handleSubmit } = useForm<AuthType>();
-  const onSubmit = (data: AuthType) => authAPI.signIn(data);
+  const [error, setError] = React.useState<string | null>(null)
+  const onSubmit = async (data: AuthType) => {
+    const authData = await authAPI.signIn(data);
+    if(authData.status === 401) {
+      setError("Неверный логин или пароль")
+    }
+
+    if(authData.status === 200) {
+      navigate("/");
+    }
+  };
 
   return (
     <form
@@ -20,6 +32,7 @@ export default function Login() {
       </div>
 
       <div className="mt-5 w-full flex flex-col gap-5 font-serif">
+        {error && <div className="text-red-500 text-center">{error}</div>}
         <input
           {...register("email", { required: true })}
           placeholder="Введите эл. почту"
