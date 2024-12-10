@@ -8,10 +8,11 @@ const LOCATION: YMapLocationRequest = {
 
 
 export default function YandexMaps() {
-    return <div style={{ width: '100%', height: '700px' }} className="border-r-2 border-black border-solid">
-        <YMap location={reactify.useDefault(LOCATION)}>
-            <YMapDefaultSchemeLayer />
-            <YMapDefaultFeaturesLayer />
-        </YMap>
-    </div>
+    return <img src="/images/location.png" className="w-full h-auto"/>
+    // return <div style={{ width: '100%', height: '700px' }} className="border-r-2 border-black border-solid">
+    //     <YMap location={reactify.useDefault(LOCATION)}>
+    //         <YMapDefaultSchemeLayer />
+    //         <YMapDefaultFeaturesLayer />
+    //     </YMap>
+    // </div>
 }
