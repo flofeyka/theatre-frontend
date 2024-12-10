@@ -17,16 +17,13 @@ export default function Lk() {
   return (
     <div className="flex-col min-h-screen min-w-full">
       <Header />
-      <div className="px-[150px] h-[65vh] mt-3">
-        <div className="bg-white w-full text-2xl flex justify-between">
-          <div className="p-3 border-r-2 border-black flex justify-center w-[33%] cursor-pointer" onClick={() => setSelectedPage("lk")}>
+      <div className="px-[150px] sm:px-[15px] min-h-[65vh] mt-3">
+        <div className="bg-white w-full text-2xl sm:flex-col flex justify-between">
+          <div className="p-3 border-r-2 border-black flex justify-center w-[50%] sm:w-full sm:border-b-2 sm:border-r-0 cursor-pointer" onClick={() => setSelectedPage("lk")}>
             Личный кабинет
           </div>
-          <div className="p-3 border-r-2 border-black flex justify-center w-[33%] cursor-pointer" onClick={() => setSelectedPage("booked")}>
+          <div className="p-3 border-black flex justify-center w-[50%] sm:w-full cursor-pointer" onClick={() => setSelectedPage("booked")}>
             Забронированные билеты
-          </div>
-          <div className="p-3 flex justify-center w-[33%] cursor-pointer"  onClick={() => setSelectedPage("history")}>
-            История посещения
           </div>
         </div>
         <LkPages selectedPage={selectedPage} userData={userData}/>
