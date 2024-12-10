@@ -9,6 +9,7 @@ import Contacts from "./pages/contacts/Contacts";
 import Landing from "./pages/landing/Landing";
 import Repertoire from "./pages/repertoire/Repertoire";
 import Tickets from "./pages/tickets/Tickets";
+import Lk from "./pages/lk/Lk";
 
 function App() {
   return (
@@ -16,54 +17,17 @@ function App() {
       {/* <Header /> */}
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route
-          path="/login"
-          element={
-            <AuthLayout>
-              <Login />
-            </AuthLayout>
-          }
-        />
-        <Route
-          path="/register"
-          element={
-            <AuthLayout>
-              <Register />
-            </AuthLayout>
-          }
-        />
-        <Route
-          path="/contacts"
-          element={
-            <Layout>
-              <Contacts />
-            </Layout>
-          }
-        />
-        <Route
-          path="/about"
-          element={
-            <Layout>
-              <About />
-            </Layout>
-          }
-        />
-        <Route
-          path="/tickets"
-          element={
-            <Layout>
-              <Tickets />
-            </Layout>
-          }
-        />
-        <Route
-          path="/repertoire"
-          element={
-            <Layout>
-              <Repertoire />
-            </Layout>
-          }
-        />
+        <Route path="/" element={<AuthLayout />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+            <Route path="/lk" element={<Lk />} />
+        </Route>
+        <Route path="/" element={<Layout />}>
+          <Route path="/contacts" element={<Contacts />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/tickets" element={<Tickets />} />
+          <Route path="/repertoire" element={<Repertoire />} />
+        </Route>
       </Routes>
     </div>
   );

@@ -8,17 +8,20 @@ export const authAPI = {
   }: {
     email: string;
     password: string;
-  }): Promise<AuthResponse | { isError: boolean; value: any, status: number }> {
+  }): Promise<AuthResponse | { isError: boolean; value: any; status: number }> {
     try {
-      const { data, status } = await baseAPI.post("/auth/sign-in", { email, password });
+      const { data, status } = await baseAPI.post("/auth/sign-in", {
+        email,
+        password,
+      });
       localStorage.setItem("accessToken", data.accessToken);
       localStorage.setItem("refreshToken", data.refreshToken);
-      return {data, status};
+      return { data, status };
     } catch (e: any) {
       return {
         isError: true,
         value: e,
-        status: e.response.status
+        status: e.response.status,
       };
     }
   },
@@ -35,7 +38,7 @@ export const authAPI = {
     fullName: string;
     birth: Date;
     phoneNumber: string;
-  }): Promise<AuthResponse | { isError: boolean; value: any, status: number }> {
+  }): Promise<AuthResponse | { isError: boolean; value: any; status: number }> {
     try {
       const { data, status } = await baseAPI.post("/auth/sign-up", {
         email,
@@ -46,12 +49,30 @@ export const authAPI = {
       });
       localStorage.setItem("accessToken", data.accessToken);
       localStorage.setItem("refreshToken", data.refreshToken);
-      return {data, status};
+      return { data, status };
     } catch (e: any) {
       return {
         isError: true,
         value: e,
-        status: e.response.status
+        status: e.response.status,
+      };
+    }
+  },
+
+  async refreshToken() {
+    try {
+      const { data, status } = await baseAPI.put("/auth/refresh", {
+        refreshToken: localStorage.getItem("refreshToken"),
+      });
+
+      localStorage.setItem("accessToken", data.accessToken);
+      localStorage.setItem("refreshToken", data.refreshToken);
+      return { data, status };
+    } catch (e: any) {
+      return {
+        isError: true,
+        value: e,
+        status: e.response.status,
       };
     }
   },
