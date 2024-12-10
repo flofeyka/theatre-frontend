@@ -63,7 +63,7 @@ export default function Modal({
 
   return (
     <div className="fixed z-[9999] top-0 left-0 overflow-y-hidden h-screen w-screen bg-black/30 flex justify-center items-center">
-      <div className="bg-white w-[50vw]  flex flex-col items-center p-3 px-5 rounded-md">
+      <div className="bg-white w-[50vw] sm:w-[90vw] flex flex-col items-center p-3 px-5 rounded-md">
         <div className="text-3xl flex justify-between items-center w-full mb-5">
           <span>Добавить сцену</span>
           <span>

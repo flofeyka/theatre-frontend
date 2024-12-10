@@ -14,7 +14,7 @@ export default function Ticket({
   time?: Date
 }) {
   return (
-    <div className="bg-[#F2F2ED] flex ">
+    <div className="bg-[#F2F2ED] flex min-w-[200px]">
       <div className="border-r-2 border-black">
         <div className="p-3 font-serif">
           <div>{session_name}</div>
