@@ -17,6 +17,9 @@ export type User = {
   id: number;
   email: string;
   phoneNumber: string;
+  fullName: string;
+  birth: Date;
+  createdAt: Date;
 };
 
 export type AuthResponse = {
