@@ -66,13 +66,15 @@ export default function Menu({
           >
             Личный кабинет
           </NavLink>
-          <NavLink
-            onClick={handleClose}
-            to="/lk"
+          <div
+            onClick={() => {
+              localStorage.clear();
+              window.location.reload();
+            }}
             className="w-full cursor-pointer justify-center flex items-center h-[200.5px] sm:h-full sm:px-5 sm:p-3 text-center text-3xl border-b-2 border-black"
           >
-            Отмена бронирования
-          </NavLink>
+            Выйти с аккаунта
+          </div>
         </div>
       </div>
     </div>
