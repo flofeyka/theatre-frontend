@@ -12,7 +12,7 @@ export default function FirstStep({
   selectedRepertoire,
   setSelectedSession,
   sessions,
-  setOpened
+  setOpened,
 }: IProps) {
   return (
     <div className="items-center flex flex-col justify-center">
@@ -32,7 +32,11 @@ export default function FirstStep({
             </span>
           </div>
           <div>
-            <img onClick={() => setOpened(false)} src="/icons/close.svg" alt="close"/>
+            <img
+              onClick={() => setOpened(false)}
+              src="/icons/close.svg"
+              alt="close"
+            />
           </div>
         </div>
 
@@ -48,11 +52,13 @@ export default function FirstStep({
                 <div className="text-[30px]">
                   {new Date(session.time).toLocaleDateString("ru-RU", {
                     month: "long",
+                    timeZone: "UTC",
                   })}
                 </div>
                 <div className="text-[20px]">
                   {new Date(session.time).toLocaleDateString("ru-RU", {
                     weekday: "long",
+                    timeZone: "UTC",
                   })}
                 </div>
               </span>
@@ -61,6 +67,7 @@ export default function FirstStep({
               {new Date(session.time).toLocaleTimeString("ru-RU", {
                 hour: "2-digit",
                 minute: "2-digit",
+                timeZone: "UTC",
               })}
             </div>
 

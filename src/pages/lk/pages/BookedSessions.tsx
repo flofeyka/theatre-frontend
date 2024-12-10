@@ -1,7 +1,6 @@
 import React from "react";
-import { Session } from "../../../types/types";
-import Ticket from "../../../components/Ticket";
 import { sessionAPI } from "../../../api/sessionAPI";
+import Ticket from "../../../components/Ticket";
 
 export default function BookedSessions() {
   const [sessionsList, setSessionsList] = React.useState<
@@ -12,6 +11,7 @@ export default function BookedSessions() {
       type: "hall" | "balcony";
       title: string;
       time: Date;
+      price: number;
     }[]
   >([]);
 
@@ -34,7 +34,7 @@ export default function BookedSessions() {
             place={item.place}
             type={item.type}
             session_name={item.title}
-            price={100}
+            price={item.price}
             time={item.time}
           />
         ))}
