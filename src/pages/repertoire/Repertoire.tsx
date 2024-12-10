@@ -1,19 +1,33 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { repertoireAPI } from "../../api/repertoireAPI";
 import RepertoireItem from "../../components/RepertoireItem";
 import { Repertoire } from "../../types/types";
-import { repertoireAPI } from "../../api/repertoireAPI";
-
+import { authAPI } from "../../api/authAPI";
+import Modal from "./Modal/Modal";
 
 export default function Repertoires() {
   const [repertoires, setRepertoires] = React.useState<Repertoire[]>([]);
+  const [isAdmin, setIsAdmin] = React.useState<boolean>(false);
+  const [openModal, setOpenModal] = React.useState<boolean>(false);
+  const handleCloseModal = () => setOpenModal(false);
+  const handleOpenModal = () => setOpenModal(true);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const fetchRepertoires = async () => {
-        const data = await repertoireAPI.getAllRepertoires();
-        setRepertoires(data);
-    }
+      const data = await repertoireAPI.getAllRepertoires();
+      setRepertoires(data);
+    };
 
     fetchRepertoires();
+  }, []);
+
+  React.useEffect(() => {
+    const fetchUserData = async () => {
+      const { data } = await authAPI.refreshToken();
+      setIsAdmin(data.user.role === "admin");
+    };
+
+    fetchUserData();
   }, []);
 
   return (
@@ -27,6 +41,15 @@ export default function Repertoires() {
           <span className="cursor-pointer">АРХИВ</span>
         </div>
       </div>
+      {isAdmin && (
+        <div className="flex ml-10 p-3">
+          <button className="bg-black text-white px-5 py-2 rounded-md" onClick={handleOpenModal}>
+            Добавить спектакль
+          </button>
+
+          <Modal open={openModal} handleClose={handleCloseModal}/>
+        </div>
+      )}
       <div className="flex flex-wrap border-t-2 border-black sm:flex-col">
         {repertoires.map((repertoire: Repertoire) => (
           <RepertoireItem

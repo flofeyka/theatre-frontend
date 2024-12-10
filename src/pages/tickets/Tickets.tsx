@@ -108,7 +108,6 @@ export default function Tickets() {
             "0"
           )}-${String(date).padStart(2, "0")}`;
 
-          // Находим событие с совпадающей локальной датой
           const event = sessionDates.find(
             (event) => event.date === currentDate
           );
