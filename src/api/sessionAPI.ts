@@ -19,6 +19,15 @@ export const sessionAPI = {
     }
   },
 
+  async addSession({repertoireId, time, price}: {repertoireId: number; time: Date; price: number}) {
+    try {
+      const {data, status} = await baseAPI.post(`/session`, {repertoireId, time, price});
+      return {data, status};
+    } catch(e) {
+      console.log(e);
+    }
+  },
+
   async book(
     session_id: number,
     position: { row: number; place: number; type: "hall" | "balcony" }[]

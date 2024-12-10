@@ -17,7 +17,7 @@ export default function Landing() {
   const [repertoiresIndex, setRepertoiresIndex] = React.useState<number>(0);
 
   useEffect(() => {
-    if (repertoires.length > 1) {
+    if (repertoires?.length > 1) {
       const interval = setInterval(() => {
         setRepertoiresIndex(
           (prevIndex) => (prevIndex + 1) % repertoires.length
@@ -25,12 +25,12 @@ export default function Landing() {
       }, 7000);
       return () => clearInterval(interval);
     }
-  }, [repertoires.length, setRepertoiresIndex]);
+  }, [repertoires?.length, setRepertoiresIndex]);
 
   useEffect(() => {
     const fetchRepertoires = async () => {
       const repertoires = await repertoireAPI.getAllRepertoires();
-      setRepertoires(repertoires.slice(0, 3));
+      setRepertoires(repertoires?.slice(0, 3));
     };
 
     fetchRepertoires();
@@ -181,7 +181,7 @@ export default function Landing() {
       </header>
 
       <main>
-        {repertoires.length > 0 && (
+        {repertoires?.length > 0 && (
           <motion.div
             initial={{ opacity: 0 }} // Начальное состояние
             animate={{ opacity: 1, x: 0 }} // Конечное состояние
@@ -305,7 +305,7 @@ export default function Landing() {
           </div>
         </div>
 
-        {repertoires.length > 0 && (
+        {repertoires?.length > 0 && (
           <div>
             <div className="text-[30px] py-5 text-center border-b-2 border-black">
               БЛИЖАЙШИЕ СОБЫТИЯ
