@@ -10,7 +10,6 @@ export default function Lk() {
   const [selectedPage, setSelectedPage] = React.useState<
     "lk" | "booked" | "history"
   >("lk");
-  console.log(userData);
 
 
 

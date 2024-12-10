@@ -36,10 +36,6 @@ export default function Repertoires() {
         <div className="flex justify-center items-center text-[128px] h-[94%] pt-10 sm:text-[50px]">
           РЕПЕРТУАР
         </div>
-        <div className="flex justify-center gap-7 text-[24px]">
-          <span className="cursor-pointer">ТЕКУЩИЙ</span>
-          <span className="cursor-pointer">АРХИВ</span>
-        </div>
       </div>
       {isAdmin && (
         <div className="flex ml-10 p-3">
