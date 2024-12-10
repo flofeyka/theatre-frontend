@@ -5,6 +5,7 @@ import Footer from "../../components/Footer";
 import Menu from "../../components/Menu";
 import RepertoireItem from "../../components/RepertoireItem";
 import { Repertoire } from "../../types/types";
+import { motion } from "framer-motion";
 
 export default function Landing() {
   const [open, setOpen] = React.useState<boolean>(false);
@@ -13,12 +14,23 @@ export default function Landing() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [repertoires, setRepertoires] = React.useState<Repertoire[]>([]);
-  console.log(repertoires);
+  const [repertoiresIndex, setRepertoiresIndex] = React.useState<number>(0);
+
+  useEffect(() => {
+    if (repertoires.length > 1) {
+      const interval = setInterval(() => {
+        setRepertoiresIndex(
+          (prevIndex) => (prevIndex + 1) % repertoires.length
+        );
+      }, 7000);
+      return () => clearInterval(interval);
+    }
+  }, [repertoires.length, setRepertoiresIndex]);
 
   useEffect(() => {
     const fetchRepertoires = async () => {
       const repertoires = await repertoireAPI.getAllRepertoires();
-      setRepertoires(repertoires);
+      setRepertoires(repertoires.slice(0, 3));
     };
 
     fetchRepertoires();
@@ -95,7 +107,10 @@ export default function Landing() {
                     КОНТАКТЫ
                   </NavLink>
                   <span
-                    onClick={() => {handleOpen(); handleOpenMenu()}}
+                    onClick={() => {
+                      handleOpen();
+                      handleOpenMenu();
+                    }}
                     className="cursor-pointer border-black border-solid flex justify-center items-center px-5"
                   >
                     МЕНЮ
@@ -167,69 +182,83 @@ export default function Landing() {
 
       <main>
         {repertoires.length > 0 && (
-          <div className="w-full h-[50vh] sm:h-full sm:flex-col bg-black flex px-14 sm:p-0 text-white">
+          <motion.div
+            initial={{ opacity: 0 }} // Начальное состояние
+            animate={{ opacity: 1, x: 0 }} // Конечное состояние
+            transition={{ duration: 1 }}
+            className="w-full h-[50vh] sm:h-full sm:flex-col bg-black flex px-14 sm:p-0 text-white"
+          >
             <div className="sm:flex sm:flex-col sm:items-center sm:justify-center sm:w-full sm:h-full sm:gap-5">
               <span className="text-white font-semibold text-3xl mt-3">
-                14+
+                {repertoires[repertoiresIndex].category}+
               </span>
               <span>
                 <img
-                  src={repertoires[0].image}
+                  src={repertoires[repertoiresIndex].image}
                   className="h-[45vh] "
                   alt="451 farenheit"
                 />
               </span>
             </div>
-            {repertoires.length > 0 && (
-              <div className="py-5 ml-3 sm:ml-0 w-[60vw] sm:w-full">
-                <div className="flex sm:flex-col sm:items-center sm:text-center justify-between w-full">
-                  <img
-                    src="/images/pushkin_card.png"
-                    alt="pushkin_card"
-                    className="w-[175px] h-[75px] sm:w-[100px] sm:hidden"
-                  />
+            <div className="py-5 ml-3 sm:ml-0 w-[60vw] sm:w-full">
+              <div className="flex sm:flex-col sm:items-center sm:text-center justify-between w-full">
+                <img
+                  src="/images/pushkin_card.png"
+                  alt="pushkin_card"
+                  className="w-[175px] h-[75px] sm:w-[100px] sm:hidden"
+                />
 
-                  <div className="text-[35px] sm:items-center flex flex-col items-end justify-self-end">
-                    <div>
-                      {new Intl.DateTimeFormat("ru-RU", {
-                        month: "long",
-                        day: "numeric",
-                        timeZone: "UTC", // Используем UTC для точного отображения
-                      }).format(new Date(repertoires[0].sessions[0].time))}
-                    </div>
-                    <div>
-                      {new Intl.DateTimeFormat("ru-RU", {
-                        hour: "2-digit",
-                        minute: "2-digit",
-                        timeZone: "UTC", // Используем UTC
-                      }).format(new Date(repertoires[0].sessions[0].time))}
-                    </div>
-                    <div>
-                      {new Intl.DateTimeFormat("ru-RU", {
-                        weekday: "short",
-                        timeZone: "UTC", // Используем UTC
-                      }).format(new Date(repertoires[0].sessions[0].time))}
-                    </div>
+                <div className="text-[35px] sm:items-center flex flex-col items-end justify-self-end">
+                  <div>
+                    {new Intl.DateTimeFormat("ru-RU", {
+                      month: "long",
+                      day: "numeric",
+                      timeZone: "UTC", // Используем UTC для точного отображения
+                    }).format(
+                      new Date(repertoires[repertoiresIndex].sessions[0].time)
+                    )}
                   </div>
-                </div>
-                <div className="flex flex-col items-center">
-                  <div className="">
-                    <div className="text-[48px] justify-center items-center flex">
-                      {repertoires[0].title}
-                    </div>
-                    <div className="flex justify-end">
-                      {repertoires[0].description}
-                    </div>
+                  <div>
+                    {new Intl.DateTimeFormat("ru-RU", {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                      timeZone: "UTC", // Используем UTC
+                    }).format(
+                      new Date(repertoires[repertoiresIndex].sessions[0].time)
+                    )}
                   </div>
-                </div>
-                <div className="flex w-[85%] sm:w-full sm:justify-center justify-end mt-10">
-                  <button className="px-10 py-3 text-[25px] bg-[#F0D92A] text-black font-semibold rounded-lg ">
-                    Подробнее
-                  </button>
+                  <div>
+                    {new Intl.DateTimeFormat("ru-RU", {
+                      weekday: "short",
+                      timeZone: "UTC", // Используем UTC
+                    }).format(
+                      new Date(repertoires[repertoiresIndex].sessions[0].time)
+                    )}
+                  </div>
                 </div>
               </div>
-            )}
-          </div>
+              <motion.div
+                initial={{ opacity: 0 }} // Начальное состояние
+                animate={{ opacity: 1, x: 0 }} // Конечное состояние
+                transition={{ duration: 1 }}
+                className="flex flex-col items-center"
+              >
+                <div className="">
+                  <div className="text-[48px] justify-center items-center flex">
+                    {repertoires[repertoiresIndex].title}
+                  </div>
+                  <div className="flex justify-end">
+                    {repertoires[repertoiresIndex].description}
+                  </div>
+                </div>
+              </motion.div>
+              <div className="flex w-[85%] sm:w-full sm:justify-center justify-end mt-10">
+                <button className="px-10 py-3 text-[25px] bg-[#F0D92A] text-black font-semibold rounded-lg ">
+                  Подробнее
+                </button>
+              </div>
+            </div>
+          </motion.div>
         )}
 
         <div className="flex items-stretch border-b-2 border-black sm:flex-col sm:w-full sm:items-center">

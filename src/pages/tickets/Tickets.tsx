@@ -55,7 +55,7 @@ export default function Tickets() {
       // Преобразуем дату в строку формата YYYY-MM-DD, учитывая локальное время
       const localDate = `${eventDate.getFullYear()}-${String(
         eventDate.getMonth() + 1
-      ).padStart(2, "0")}-${String(eventDate.getDate()).padStart(2, "0")}`;
+      ).padStart(2, "0")}-${String(eventDate.getUTCDate()).padStart(2, "0")}`;
 
       return {
         date: localDate,
@@ -129,7 +129,7 @@ export default function Tickets() {
                 })}
               </span>
               {event && selectedContainer === event.id && (
-                <div className="flex items-center w-[50%] -ml-10 h-full">
+                <div className="flex items-center w-[50%] -ml-[30%] h-full">
                   <button
                     onClick={() => handleOpen(event)}
                     className="bg-black font-semibold opacity-50 border-white border-2 text-white px-10 font-serif text-[20px]"

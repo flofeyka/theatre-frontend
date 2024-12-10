@@ -59,10 +59,10 @@ export default function Menu({
           >
             Закрыть
           </div>
-          <NavLink to="/lk" className="w-full cursor-pointer flex items-center text-center h-[200.5px] sm:h-full sm:px-5 sm:p-3 text-3xl border-b-2 border-black">
+          <NavLink onClick={handleClose} to="/lk" className="w-full cursor-pointer flex items-center text-center h-[200.5px] sm:h-full sm:px-5 sm:p-3 text-3xl border-b-2 border-black">
             Личный кабинет
           </NavLink>
-          <div className="w-full cursor-pointer justify-center flex items-center h-[200.5px] sm:h-full sm:px-5 sm:p-3 text-center text-3xl border-b-2 border-black">
+          <div onClick={handleClose} className="w-full cursor-pointer justify-center flex items-center h-[200.5px] sm:h-full sm:px-5 sm:p-3 text-center text-3xl border-b-2 border-black">
             Отмена бронирования
           </div>
         </div>
