@@ -131,7 +131,7 @@ export default function Register() {
 
       <div className="text-center font-serif text-xl">
         <div>Уже зарегистрированы ?</div>
-        <Link className="text-[#FFC224]" to="/login">
+        <Link to="/login">
           Войти
         </Link>
       </div>
