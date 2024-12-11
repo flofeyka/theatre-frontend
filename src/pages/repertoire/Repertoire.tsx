@@ -9,6 +9,8 @@ export default function Repertoires() {
   const [repertoires, setRepertoires] = React.useState<Repertoire[]>([]);
   const [isAdmin, setIsAdmin] = React.useState<boolean>(false);
   const [openModal, setOpenModal] = React.useState<boolean>(false);
+  const [page, setPage] = React.useState<number>(1);
+  const [currentPageRepertoires, setCurrentPageRepertoires] = React.useState<Repertoire[]>([])
   const handleCloseModal = () => setOpenModal(false);
   const handleOpenModal = () => setOpenModal(true);
 
@@ -24,11 +26,15 @@ export default function Repertoires() {
   React.useEffect(() => {
     const fetchUserData = async () => {
       const { data } = await authAPI.refreshToken();
-      setIsAdmin(data.user.role === "admin");
+      setIsAdmin(data?.user?.role === "admin");
     };
 
     fetchUserData();
   }, []);
+
+  React.useEffect((): void => {
+    setCurrentPageRepertoires(repertoires.slice((page - 1) * 9, page * 9));
+  }, [page, repertoires.length, JSON.stringify(repertoires)]);
 
   return (
     <div>
@@ -47,7 +53,7 @@ export default function Repertoires() {
         </div>
       )}
       <div className="flex flex-wrap border-t-2 border-black sm:flex-col">
-        {repertoires.map((repertoire: Repertoire) => (
+        {currentPageRepertoires.map((repertoire: Repertoire) => (
           <RepertoireItem
             image={repertoire.image}
             id={repertoire.id}
@@ -59,13 +65,13 @@ export default function Repertoires() {
       </div>
 
       <div className="flex justify-center h-[10vh] border-b-2 border-black">
-        <span className="w-[17.5vw] cursor-pointer flex justify-center items-center border-r-2 border-black">
+        <span className="w-[17.5vw] cursor-pointer flex justify-center items-center border-r-2 border-black" onClick={() => setPage(page > 1 ? page - 1 : 1)}>
           <img src="/icons/arrow-left.svg" alt="arrow-left" />
         </span>
         <span className="w-full flex justify-center items-center text-2xl">
-          1
+          {page}
         </span>
-        <span className="w-[17.5vw] cursor-pointer flex justify-center items-center border-l-2 border-black">
+        <span className="w-[17.5vw] cursor-pointer flex justify-center items-center border-l-2 border-black" onClick={() => setPage(page < Math.ceil(repertoires.length / 9) ? page + 1 : Math.ceil(repertoires.length / 9))}>
           <img src="/icons/arrow-right.svg" alt="arrow-right" />
         </span>
       </div>
