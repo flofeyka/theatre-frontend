@@ -74,9 +74,7 @@ export default function Register() {
             />
           </div>
           <div className="w-[79.5%] items-center flex flex-col">
-            <div className="text-2xl text-start w-full">
-              Дата рождения
-            </div>
+            <div className="text-2xl text-start w-full">Дата рождения</div>
             <input
               {...register("birth", { valueAsDate: true })}
               type="date"
@@ -120,20 +118,20 @@ export default function Register() {
               className="h-[75px] text-4xl px-3 w-full bg-[#F2F2ED] border-black border-2"
             />
           </div>
-          <button
-            type="submit"
-            className="bg-[#E6CF28] h-[75px] w-full font-serif text-3xl"
-          >
-            Зарегистрироваться
-          </button>
+          <div className="w-[79%]">
+            <button
+              type="submit"
+              className="bg-[#E6CF28] h-[75px] w-full font-serif text-3xl"
+            >
+              Зарегистрироваться
+            </button>
+          </div>
         </div>
       </div>
 
       <div className="text-center font-serif text-xl">
         <div>Уже зарегистрированы ?</div>
-        <Link to="/login">
-          Войти
-        </Link>
+        <Link to="/login">Войти</Link>
       </div>
     </form>
   );
