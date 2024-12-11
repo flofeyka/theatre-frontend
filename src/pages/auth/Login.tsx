@@ -34,17 +34,19 @@ export default function Login() {
       <div className="mt-5 w-full flex flex-col gap-5 font-serif">
         {error && <div className="text-red-500 text-center">{error}</div>}
         <div>
-          <div className="text-2xl">Электронная почта</div>
+          <label htmlFor="email" className="text-2xl">Электронная почта</label>
           <input
             {...register("email", { required: true })}
             placeholder="Введите эл. почту"
+            id="email"
             className="h-[70px] text-4xl px-3 w-full bg-[#F2F2ED] border-black border-2"
           />
         </div>
         <div>
-          <div className="text-2xl">Пароль</div>
+          <label htmlFor="password" className="text-2xl">Пароль</label>
           <input
             type="password"
+            id="password"
             {...register("password", { required: true })}
             placeholder="Введите пароль"
             className="h-[70px] text-4xl px-3 w-full bg-[#F2F2ED] border-black border-2"

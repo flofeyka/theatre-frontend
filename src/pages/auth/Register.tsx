@@ -56,17 +56,21 @@ export default function Register() {
 
       <div className="flex justify-center font-serif sm:flex-col">
         <div className="flex items-center flex-col gap-5 w-[50%] sm:w-full">
-          <div className="">
-            <div className="text-2xl">Имя и фамилия</div>
+          <div className="w-[79.5%]">
+            <label htmlFor="fullName" className="text-2xl">
+              Имя и фамилия
+            </label>
             <input
               {...register("fullName", { required: true })}
               placeholder="Имя и фамилия"
+              id="fullName"
               className="h-[75px] text-4xl px-3 w-full bg-[#F2F2ED] border-black border-2"
             />
           </div>
-          <div>
-            <div className="text-2xl">Номер телефона</div>
+          <div className="w-[79.5%]">
+            <label htmlFor="phone" className="text-2xl">Номер телефона</label>
             <InputMask
+              id="phone"
               mask="+7 (999)-999-99-99"
               {...register("phoneNumber", { required: true })}
               placeholder="+7 (123)456-78-90"
@@ -74,46 +78,51 @@ export default function Register() {
             />
           </div>
           <div className="w-[79.5%] items-center flex flex-col">
-            <div className="text-2xl text-start w-full">Дата рождения</div>
+            <label htmlFor="birth" className="text-2xl text-start w-full">Дата рождения</label>
             <input
               {...register("birth", { valueAsDate: true })}
               type="date"
+              id="birth"
               placeholder="Дата рождения"
               className="h-[75px] text-4xl px-3 w-full bg-[#F2F2ED] border-black border-2"
             />
           </div>
           <div className="w-[80%] text-[19px]">
             <input {...register("agreement")} type="checkbox" /> Я соглашаюсь с{" "}
-            <span className="text-[#FFC224]">
-              пользовательским соглашением{" "}
-            </span>
-            и даю разрешение на обработку своих персональных данных
+              пользовательским соглашением и даю разрешение на обработку своих персональных данных
           </div>
         </div>
 
         <div className="flex items-center flex-col gap-5 w-[50%] sm:w-full">
-          <div>
-            <div className="text-2xl">Электронная почта</div>
+          <div className="w-[79.5%]">
+            <label htmlFor="email" className="text-2xl">Электронная почта</label>
             <input
               {...register("email")}
+              id="email"
               placeholder="Электронная почта"
               className="h-[75px] text-4xl px-3 w-full bg-[#F2F2ED] border-black border-2"
             />
           </div>
-          <div>
-            <div className="text-2xl">Пароль</div>
+          <div className="w-[79.5%]">
+            <label htmlFor="password" className="text-2xl">
+              Пароль
+            </label>
             <input
+              id="password"
               {...register("password")}
               type="password"
               placeholder="Пароль"
               className="h-[75px] text-4xl px-3 w-full bg-[#F2F2ED] border-black border-2"
             />
           </div>
-          <div>
-            <div className="text-2xl">Повторите пароль</div>
+          <div className="w-[79.5%]">
+            <label htmlFor="repeatPassword" className="text-2xl">
+              Повторите пароль
+            </label>
             <input
               {...register("repeatPassword")}
               type="password"
+              id="repeatPassword"
               placeholder="Повторите пароль"
               className="h-[75px] text-4xl px-3 w-full bg-[#F2F2ED] border-black border-2"
             />
