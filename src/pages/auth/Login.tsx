@@ -7,14 +7,14 @@ import React from "react";
 export default function Login() {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm<AuthType>();
-  const [error, setError] = React.useState<string | null>(null)
+  const [error, setError] = React.useState<string | null>(null);
   const onSubmit = async (data: AuthType) => {
     const authData = await authAPI.signIn(data);
-    if(authData.status === 401) {
-      setError("Неверный логин или пароль")
+    if (authData.status === 401) {
+      setError("Неверный логин или пароль");
     }
 
-    if(authData.status === 200) {
+    if (authData.status === 200) {
       navigate("/");
     }
   };
@@ -33,17 +33,23 @@ export default function Login() {
 
       <div className="mt-5 w-full flex flex-col gap-5 font-serif">
         {error && <div className="text-red-500 text-center">{error}</div>}
-        <input
-          {...register("email", { required: true })}
-          placeholder="Введите эл. почту"
-          className="h-[70px] text-4xl px-3 w-full bg-[#F2F2ED] border-black border-2"
-        />
-        <input
-          type="password"
-          {...register("password", { required: true })}
-          placeholder="Введите пароль"
-          className="h-[70px] text-4xl px-3 w-full bg-[#F2F2ED] border-black border-2"
-        />
+        <div>
+          <div className="text-2xl">Электронная почта</div>
+          <input
+            {...register("email", { required: true })}
+            placeholder="Введите эл. почту"
+            className="h-[70px] text-4xl px-3 w-full bg-[#F2F2ED] border-black border-2"
+          />
+        </div>
+        <div>
+          <div className="text-2xl">Пароль</div>
+          <input
+            type="password"
+            {...register("password", { required: true })}
+            placeholder="Введите пароль"
+            className="h-[70px] text-4xl px-3 w-full bg-[#F2F2ED] border-black border-2"
+          />
+        </div>
 
         <div>
           <button
@@ -55,7 +61,7 @@ export default function Login() {
 
           <div className="text-center font-serif text-xl mt-3">
             <div>Еще не зарегистрированы ?</div>
-            <Link className="text-[#E6CF28]" to="/register">
+            <Link to="/register">
               Зарегистрироваться
             </Link>
           </div>

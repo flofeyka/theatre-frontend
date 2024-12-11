@@ -38,7 +38,6 @@ export default function Register() {
     if (responseData.status === 200) {
       navigate("/");
     }
-    
   };
 
   return (
@@ -57,24 +56,35 @@ export default function Register() {
 
       <div className="flex justify-center font-serif sm:flex-col">
         <div className="flex items-center flex-col gap-5 w-[50%] sm:w-full">
-          <input
-            {...register("fullName", { required: true })}
-            placeholder="Имя и фамилия"
-            className="h-[75px] text-4xl px-3 w-[85%] bg-[#F2F2ED] border-black border-2"
-          />
-          <InputMask
-            mask="+7 (999)-999-99-99"
-            {...register("phoneNumber", { required: true })}
-            placeholder="+7 (123)456-78-90"
-            className="h-[75px] text-4xl px-3 w-[85%] bg-[#F2F2ED] border-black border-2"
-          />
-          <input
-            {...register("birth", { valueAsDate: true })}
-            type="date"
-            placeholder="Дата рождения"
-            className="h-[75px] text-4xl px-3 w-[85%] bg-[#F2F2ED] border-black border-2"
-          />
-          <div className="w-[85%] text-[19px]">
+          <div className="">
+            <div className="text-2xl">Имя и фамилия</div>
+            <input
+              {...register("fullName", { required: true })}
+              placeholder="Имя и фамилия"
+              className="h-[75px] text-4xl px-3 w-full bg-[#F2F2ED] border-black border-2"
+            />
+          </div>
+          <div>
+            <div className="text-2xl">Номер телефона</div>
+            <InputMask
+              mask="+7 (999)-999-99-99"
+              {...register("phoneNumber", { required: true })}
+              placeholder="+7 (123)456-78-90"
+              className="h-[75px] text-4xl px-3 w-full bg-[#F2F2ED] border-black border-2"
+            />
+          </div>
+          <div className="w-[79.5%] items-center flex flex-col">
+            <div className="text-2xl text-start w-full">
+              Дата рождения
+            </div>
+            <input
+              {...register("birth", { valueAsDate: true })}
+              type="date"
+              placeholder="Дата рождения"
+              className="h-[75px] text-4xl px-3 w-full bg-[#F2F2ED] border-black border-2"
+            />
+          </div>
+          <div className="w-[80%] text-[19px]">
             <input {...register("agreement")} type="checkbox" /> Я соглашаюсь с{" "}
             <span className="text-[#FFC224]">
               пользовательским соглашением{" "}
@@ -84,26 +94,35 @@ export default function Register() {
         </div>
 
         <div className="flex items-center flex-col gap-5 w-[50%] sm:w-full">
-          <input
-            {...register("email")}
-            placeholder="Электронная почта"
-            className="h-[75px] text-4xl px-3 w-[85%] bg-[#F2F2ED] border-black border-2"
-          />
-          <input
-            {...register("password")}
-            type="password"
-            placeholder="Пароль"
-            className="h-[75px] text-4xl px-3 w-[85%] bg-[#F2F2ED] border-black border-2"
-          />
-          <input
-            {...register("repeatPassword")}
-            type="password"
-            placeholder="Повторите пароль"
-            className="h-[75px] text-4xl px-3 w-[85%] bg-[#F2F2ED] border-black border-2"
-          />
+          <div>
+            <div className="text-2xl">Электронная почта</div>
+            <input
+              {...register("email")}
+              placeholder="Электронная почта"
+              className="h-[75px] text-4xl px-3 w-full bg-[#F2F2ED] border-black border-2"
+            />
+          </div>
+          <div>
+            <div className="text-2xl">Пароль</div>
+            <input
+              {...register("password")}
+              type="password"
+              placeholder="Пароль"
+              className="h-[75px] text-4xl px-3 w-full bg-[#F2F2ED] border-black border-2"
+            />
+          </div>
+          <div>
+            <div className="text-2xl">Повторите пароль</div>
+            <input
+              {...register("repeatPassword")}
+              type="password"
+              placeholder="Повторите пароль"
+              className="h-[75px] text-4xl px-3 w-full bg-[#F2F2ED] border-black border-2"
+            />
+          </div>
           <button
             type="submit"
-            className="bg-[#E6CF28] h-[75px] w-[85%] font-serif text-3xl"
+            className="bg-[#E6CF28] h-[75px] w-full font-serif text-3xl"
           >
             Зарегистрироваться
           </button>
@@ -112,7 +131,7 @@ export default function Register() {
 
       <div className="text-center font-serif text-xl">
         <div>Уже зарегистрированы ?</div>
-        <Link className="text-[#FFC224]" to="/login">
+        <Link to="/login">
           Войти
         </Link>
       </div>
